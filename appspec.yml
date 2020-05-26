@@ -7,6 +7,8 @@ files:
     destination: /home/ec2-user/express-service/public
   - source: /views/**/*
     destination: /home/ec2-user/express-service/views
+  - source: /scripts/*
+    destination: /home/ec2-user/express-service/scripts
   - source: /package.json
     destination: /home/ec2-user/express-service
   - source: /node_modules
@@ -20,5 +22,9 @@ hooks:
       timeout: 300
       runas: root
     - location: scripts/start_server
+      timeout: 300
+      runas: root
+  ApplicationStop:
+    - location: scripts/stop_server
       timeout: 300
       runas: root
