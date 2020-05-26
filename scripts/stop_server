@@ -2,3 +2,5 @@
 #pkill -f node || true
 
 if pgrep node; then pkill node; fi
+
+exit 0
