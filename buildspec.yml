@@ -31,6 +31,7 @@ artifacts:
     - README.md
     - package.json
     - myApp.js
+    - server.js
     - public/**/*
     - views/**/*
     - appspec.yml
