@@ -1,2 +1,4 @@
 #!/bin/bash
-pkill -f node || true
+#pkill -f node || true
+
+if pgrep node; then pkill node; fi
