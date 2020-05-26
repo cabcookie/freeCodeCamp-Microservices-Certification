@@ -1,8 +1,11 @@
-Welcome to the AWS CodeStar sample web service
-==============================================
+Welcome to the freeCodeCamp Microservices Course
+================================================
 
-This sample code helps get you started with a simple Express web service
-deployed by AWS CodeDeploy and AWS CloudFormation to an Amazon EC2 instance.
+This sample repository follows the *API and Microservices Certification*
+program from freeCodeCamp. The program starts
+[here](https://www.freecodecamp.org/learn/apis-and-microservices/managing-packages-with-npm/).
+
+I connected the repository with [this Codestar project](https://eu-west-1.console.aws.amazon.com/codestar/home?region=eu-west-1#/projects/freecodecamp-mi/dashboard).
 
 What's Here
 -----------
@@ -10,7 +13,6 @@ What's Here
 This sample includes:
 
 * README.md - this file
-* server.js - this file contains the code for your service
 * appspec.yml - this file is used by AWS CodeDeploy when deploying the web
   service to EC2
 * package.json - this file contains various metadata relevant to your Node.js
@@ -45,6 +47,9 @@ local computer. If you haven't, do that first. You can find instructions in the 
         $ node server.js
 
 4. Open http://127.0.0.1:3000/ in a web browser to view your service.
+
+I'm figuring out how to test and preview the application within the Cloud9 environment.
+
 
 What Do I Do Next?
 ------------------

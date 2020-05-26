@@ -1,17 +1,24 @@
 {
-    "name": "express-HelloWorld",
-    "description": "Hello World ExpressJS WebService",
-    "version": "0.0.1",
+    "name": "freeCodeCamp-microservices",
+    "description": "freeCodeCamp Microservices Certification course",
+    "author": "Carsten Koch",
+    "version": "0.1.0",
     "private": true,
+    "main": "server.js",
     "dependencies": {
-        "express": "4.16.2"
+        "express": "^4.16.2"
     },
     "devDependencies": {
-        "mocha": "5.0.0",
-        "unit.js": "2.0.0",
-        "supertest": "3.0.0"
+        "mocha": "^7.2.0",
+        "supertest": "3.0.0",
+        "unit.js": "^2.1.1"
     },
     "scripts": {
-        "test": "mocha --recursive tests --exit"
+        "test": "mocha --recursive tests --exit",
+        "start": "node server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/cabcookie/freeCodeCamp-Microservices-Certification.git"
     }
 }
