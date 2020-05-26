@@ -30,7 +30,9 @@ artifacts:
     - template.yml
     - README.md
     - package.json
-    - server.js
+    - *.js
+    - public/**/*
+    - views/**/*
     - appspec.yml
     - scripts/*
     - node_modules/**/*

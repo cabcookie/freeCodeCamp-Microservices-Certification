@@ -2,11 +2,16 @@
     "name": "freeCodeCamp-microservices",
     "description": "freeCodeCamp Microservices Certification course",
     "author": "Carsten Koch",
+    "keywords": ["microservices", "todo-inbox", "gtd", "todo-projects", "todo-contexts", "freecodecamp"],
     "version": "0.1.0",
+    "license": "MIT",
     "private": true,
     "main": "server.js",
     "dependencies": {
-        "express": "^4.16.2"
+		"express": "^4.14.0",
+		"body-parser": "^1.15.2",
+		"cookie-parser": "^1.4.3",
+		"fcc-express-bground": "https://github.com/Em-Ant/fcc-express-bground-pkg.git"
     },
     "devDependencies": {
         "mocha": "^7.2.0",
@@ -22,3 +27,4 @@
         "url": "https://github.com/cabcookie/freeCodeCamp-Microservices-Certification.git"
     }
 }
+
