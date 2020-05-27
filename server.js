@@ -3,26 +3,54 @@
  * the verification process may break
  * ***************************************************/
  
-var bGround = require('fcc-express-bground');
-var myApp = require('./myApp');
-var express = require('express');
-var app = express();
+const bGround = require('fcc-express-bground')
+const routes = require('./utils/routes')
+const express = require('express')
+const _ = require("./utils/functional")
+const log = require("./utils/logger")
+const mongoose = require("mongoose")
+const ca = require("./utils/getca")
+// const db = require("./utils/dbconnection")
+const app = express()
+
+process.env.MESSAGE_STYLE="uppercase"
+process.env.MONGO_URI="mongodb://cabcookie:Ma2712lte@freecodecamp-microservices.cluster-cml8ttdgyjib.eu-west-1.docdb.amazonaws.com:27017/?ssl=true&replicaSet=rs0&readPreference=secondaryPreferred"
+
+log("Start logger...")
 
 if (!process.env.DISABLE_XORIGIN) {
   app.use(function(req, res, next) {
-    var allowedOrigins = ['https://narrow-plane.gomix.me', 'https://www.freecodecamp.com'];
-    var origin = req.headers.origin || '*';
-    if(!process.env.XORIG_RESTRICT || allowedOrigins.indexOf(origin) > -1){
-         console.log(origin);
-         res.setHeader('Access-Control-Allow-Origin', origin);
-         res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    const allowedOrigins = ['https://narrow-plane.gomix.me', 'https://www.freecodecamp.com']
+    const origin = req.headers.origin || '*'
+    if(!process.env.XORIG_RESTRICT || allowedOrigins.indexOf(origin) > -1) {
+      
+      _.flow(
+        _.passOn("Method: ${method}, Path: ${path}, IP: ${ip}, Origin: ${origin}"),
+        _.replacer([
+          ["method", req.method],
+          ["path", req.path],
+          ["ip", req.ip],
+          ["origin", req.headers.origin]
+        ]),
+        log
+      )()
+      
+      res.setHeader('Access-Control-Allow-Origin', origin)
+      res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
     }
-    next();
+    next()
   });
 }
 
-var port = process.env.PORT || 3000;
-bGround.setupBackgroundApp(app, myApp, __dirname).listen(port, function(){
+const port = process.env.PORT || 3000
+bGround.setupBackgroundApp(app, routes(__dirname), __dirname).listen(port, function(){
+  //mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+  mongoose.connect(process.env.MONGO_URI, {
+    sslValidate: true,
+    sslCA: ca(__dirname, "rds-combined-ca-bundle.pem"),
+    useNewUrlParser: true
+  })
+
   bGround.log('Node is listening on port '+ port + '...')
 });
 
